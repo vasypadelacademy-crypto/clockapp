@@ -1,13 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date and Clock</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 text-center">
+    <h1 class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Current Time</h1>
+    <div id="timeDisplay" class="text-6xl font-sans font-medium text-gray-900 tracking-tight">
+      --:--:--
+    </div>
+    <div id="dateDisplay" class="text-xl text-gray-500 mt-2 font-mono">
+      ---
+    </div>
+  </div>
 
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('timeDisplay').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('dateDisplay').textContent = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    
+    // Update immediately, then every second
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
